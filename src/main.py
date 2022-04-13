@@ -3,9 +3,11 @@ from Compte import Compte, CompteCourant, CompteEpargne
 if __name__ == '__main__':
     print("Let's start coding our bank application !")
 
+#Création de 2 comptes pour le test
 compte_courant = CompteCourant("Jean", solde=1200, autorisation_decouvert=500, pourcentage_agios=2.5)
 compte_epargne = CompteEpargne("Jean", solde=1200, pourcentage_interets=3.5)
 
+#Interface Console
 sortie = False
 while not sortie:
     print("----------------------------------------------------------------\n")
