@@ -45,7 +45,7 @@ class Compte(ABC):
     @solde.setter
     def solde(self, value):
         """setter solde"""
-        self._solde=value
+        self._solde = value
 
     @property
     def numero_compte(self):
@@ -179,6 +179,8 @@ class CompteEpargne(Compte):
         Prend un montant en paramètre et le soustrait au solde du compte si le nouveau solde reste positif.
         Applique les intérets après chaque retrait effectué.
         """
+        if montant < 0:
+            raise ValueError("le montant doit être positif")
         if self._solde - montant < 0:
             raise Exception("RETRAIT IMPOSSIBLE, FONDS INSUFFISANT")
         else:
@@ -191,6 +193,8 @@ class CompteEpargne(Compte):
         Prend un montant en paramètre et l' ajoute au solde du compte
         Applique les intérets à chaque versement
         """
+        if montant < 0:
+            raise ValueError("le montant doit être positif")
         self._solde = self._solde + montant
         self.appliquer_interets()
 
