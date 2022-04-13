@@ -42,8 +42,7 @@ class Compte(ABC):
         """getter solde"""
         return self._solde
 
-    @solde.setter
-    def solde(self, value):
+    def set_solde(self, value):
         """setter solde"""
         self._solde = value
 
@@ -56,6 +55,7 @@ class Compte(ABC):
     def nom_proprietaire(self):
         """getter nom_proprietaire"""
         return self._nom_proprietaire
+
 
 class CompteCourant(Compte):
     """
@@ -125,9 +125,7 @@ class CompteCourant(Compte):
         """getter autorisation_decouvert"""
         return self._autorisation_decouvert
 
-
-    @autorisation_decouvert.setter
-    def autorisation_decouvert(self, value):
+    def set_autorisation_decouvert(self, value):
         """setter autorisation_decouvert"""
         if value < 0:
             raise ValueError("autorisation de découvert doit être positif")
@@ -138,6 +136,11 @@ class CompteCourant(Compte):
         """getter pourcentage_agios"""
         return self._pourcentage_agios
 
+    def set_pourcentage_agios(self, value):
+        """setter pourcentage_agios"""
+        if value < 0 or value > 100:
+            raise ValueError("le pourcentage d'agios doit être compris entre 0 et 100")
+        self._pourcentage_agios = value
 
 
 class CompteEpargne(Compte):
@@ -198,4 +201,13 @@ class CompteEpargne(Compte):
         self._solde = self._solde + montant
         self.appliquer_interets()
 
+    @property
+    def pourcentage_interets(self):
+        """getter pourcentage_interets"""
+        return self._pourcentage_interets
 
+    def set_pourcentage_interets(self, value):
+        """setter pourcentage_interets"""
+        if value < 0 or value > 100:
+            raise ValueError("le pourcentage d'interets doit être compris entre 0 et 100")
+        self._pourcentage_interets = value

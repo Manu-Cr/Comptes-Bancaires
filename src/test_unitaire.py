@@ -55,11 +55,22 @@ class TestCompteCourant():
 
     def test_cc_agios_retrait(self, compte_courant: CompteCourant) -> None:
         """test du calcul d'agios lors d'un retrait où le solde se retrouve dans le négatif"""
-        pass  # TODO A faire
+        montant = 100
+        compte_courant.set_autorisation_decouvert(100)
+        compte_courant.set_pourcentage_agios(10)
+        compte_courant.retrait(montant)
+
+        assert compte_courant.solde == -110
 
     def test_cc_agios_versement(self, compte_courant: CompteCourant) -> None:
         """test du calcul d'agios lors d'un versement où le solde reste dans le négatif """
-        pass  # TODO
+        montant = 100
+        compte_courant.set_solde(-1000)
+        compte_courant.set_autorisation_decouvert(1000)
+        compte_courant.set_pourcentage_agios(10)
+        compte_courant.versement(montant)
+
+        assert compte_courant.solde == -990
 
 
 
@@ -111,8 +122,17 @@ class TestCompteEpargne():
 
     def test_ce_interets_retrait(self, compte_epargne: CompteEpargne) -> None:
         """test du calcul d'intérets lors d'un retrait"""
-        pass  # TODO A faire
+        montant = 1000
+        compte_epargne.set_solde(5000)
+        compte_epargne.set_pourcentage_interets(10)
+        compte_epargne.retrait(montant)
+        assert compte_epargne.solde == 4400
+
 
     def test_ce_interets_versement(self, compte_epargne: CompteEpargne) -> None:
         """test du calcul d'intérets lors d'un versement """
-        pass  # TODO
+        montant = 1000
+        compte_epargne.set_solde(5000)
+        compte_epargne.set_pourcentage_interets(10)
+        compte_epargne.versement(montant)
+        assert compte_epargne.solde == 6600
