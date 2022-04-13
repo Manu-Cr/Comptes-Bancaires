@@ -73,7 +73,6 @@ class TestCompteCourant():
         assert compte_courant.solde == -990
 
 
-
 @pytest.mark.ce
 class TestCompteEpargne():
     """Test Unitaire pour Compte Epargne"""
@@ -127,7 +126,6 @@ class TestCompteEpargne():
         compte_epargne.set_pourcentage_interets(10)
         compte_epargne.retrait(montant)
         assert compte_epargne.solde == 4400
-
 
     def test_ce_interets_versement(self, compte_epargne: CompteEpargne) -> None:
         """test du calcul d'intérets lors d'un versement """

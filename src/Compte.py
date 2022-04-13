@@ -68,7 +68,8 @@ class CompteCourant(Compte):
     def __init__(self, nom_proprietaire, solde=0, autorisation_decouvert=0, pourcentage_agios=0):
         """
         Constructeur de la class CompteCourant
-        attributs : numero_compte, nom_proprietaire, solde, autorisation_decouvert, pourcentage_agios
+        attributs : numero_compte, nom_proprietaire, solde, autorisation_decouvert,
+        pourcentage_agios (chiffre compris entre 0 et 100)
         """
         super().__init__(nom_proprietaire, solde)
         self._autorisation_decouvert = autorisation_decouvert
@@ -89,7 +90,8 @@ class CompteCourant(Compte):
     def appliquer_agios(self):
         """
         Méthode appliquer_agios
-        Retire le pourcentage d'agios sur le compte courant dès qu'une opération est effectuée alors que le solde du compte courant est en négatif.
+        Retire le pourcentage d'agios sur le compte courant dès qu'une opération est effectuée
+        alors que le solde du compte courant est en négatif.
         """
         if self._solde < 0:
             self._solde += self._solde * self._pourcentage_agios / 100
@@ -97,7 +99,8 @@ class CompteCourant(Compte):
     def retrait(self, montant=0):
         """
         Surcharge Méthode retrait
-        Prend un montant en paramètre et le soustrait au solde du compte si le nouveau solde ne dépasse pas le découvert autorisé.
+        Prend un montant en paramètre et le soustrait au solde du compte
+        si le nouveau solde ne dépasse pas le découvert autorisé.
         Applique les agios si le solde après retrait est dans le négatif
         """
         if montant < 0:
@@ -153,7 +156,8 @@ class CompteEpargne(Compte):
     def __init__(self, nom_proprietaire, solde=0, pourcentage_interets=0):
         """
         Constructeur de la class CompteEpargne
-        attributs : numero_compte, nom_proprietaire, solde, pourcentage_interets
+        attributs : numero_compte, nom_proprietaire, solde,
+        pourcentage_interets (chiffre compris entre 0 et 100)
         """
         super().__init__(nom_proprietaire, solde)
         self._pourcentage_interets = pourcentage_interets
