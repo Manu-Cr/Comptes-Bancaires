@@ -70,7 +70,7 @@ class CompteCourant(Compte):
     def appliquer_agios(self):
         """
         Méthode appliquer_agios
-        Retire le pourcentage d'agios sur le compte courant dès qu'une opération est effectuer alors que le solde du compte courant est en négatif.
+        Retire le pourcentage d'agios sur le compte courant dès qu'une opération est effectuée alors que le solde du compte courant est en négatif.
         """
         if self._solde < 0:
             self._solde += self._solde * self._pourcentage_agios / 100
@@ -89,7 +89,7 @@ class CompteCourant(Compte):
 
     def versement(self, montant=0):
         """
-        Méthode versement
+        Surcharge Méthode versement
         Prend un montant en paramètre et l' ajoute au solde du compte
         Applique les agios si le solde après versement est dans le négatif
         """
@@ -99,12 +99,12 @@ class CompteCourant(Compte):
 
     @property
     def numero_compte(self):
-        """getter"""
+        """getter numero_compte"""
         return self._numero_compte
 
     @property
     def nom_proprietaire(self):
-        """getter"""
+        """getter nom_proprietaire"""
         return self._nom_proprietaire
 
 
@@ -164,10 +164,10 @@ class CompteEpargne(Compte):
 
     @property
     def numero_compte(self):
-        """getter"""
+        """getter numero_compte"""
         return self._numero_compte
 
     @property
     def nom_proprietaire(self):
-        """getter"""
+        """getter nom_proprietaire"""
         return self._nom_proprietaire
