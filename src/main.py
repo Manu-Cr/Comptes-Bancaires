@@ -3,8 +3,8 @@ from Compte import Compte, CompteCourant, CompteEpargne
 if __name__ == '__main__':
     print("Let's start coding our bank application !")
 
-compte_courant = CompteCourant("Jean", 1200, 500, 2.5)
-compte_epargne = CompteEpargne("Jean", 1200, 3.5)
+compte_courant = CompteCourant("Jean", solde=1200, autorisation_decouvert=500, pourcentage_agios=2.5)
+compte_epargne = CompteEpargne("Jean", solde=1200, pourcentage_interets=3.5)
 
 sortie = False
 while not sortie:

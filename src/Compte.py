@@ -37,6 +37,25 @@ class Compte(ABC):
         return "Compte n°: {}\nPropriétaire: {}\nSolde: {}\n".format(self._numero_compte,
                                                                      self._nom_proprietaire, round(self._solde, 2))
 
+    @property
+    def solde(self):
+        """getter solde"""
+        return self._solde
+
+    @solde.setter
+    def solde(self, value):
+        """setter solde"""
+        self._solde=value
+
+    @property
+    def numero_compte(self):
+        """getter numero_compte"""
+        return self._numero_compte
+
+    @property
+    def nom_proprietaire(self):
+        """getter nom_proprietaire"""
+        return self._nom_proprietaire
 
 class CompteCourant(Compte):
     """
@@ -46,7 +65,7 @@ class CompteCourant(Compte):
     si le solde du compte se trouve dans le négatif.
     """
 
-    def __init__(self, nom_proprietaire, solde=0, autorisation_decouvert=100, pourcentage_agios=2.5):
+    def __init__(self, nom_proprietaire, solde=0, autorisation_decouvert=0, pourcentage_agios=0):
         """
         Constructeur de la class CompteCourant
         attributs : numero_compte, nom_proprietaire, solde, autorisation_decouvert, pourcentage_agios
@@ -81,6 +100,8 @@ class CompteCourant(Compte):
         Prend un montant en paramètre et le soustrait au solde du compte si le nouveau solde ne dépasse pas le découvert autorisé.
         Applique les agios si le solde après retrait est dans le négatif
         """
+        if montant < 0:
+            raise ValueError("le montant doit être positif")
         if self._solde - montant < -self._autorisation_decouvert:
             raise Exception("RETRAIT IMPOSSIBLE, FONDS INSUFFISANT")
         else:
@@ -93,19 +114,30 @@ class CompteCourant(Compte):
         Prend un montant en paramètre et l' ajoute au solde du compte
         Applique les agios si le solde après versement est dans le négatif
         """
+        if montant < 0:
+            raise ValueError("le montant doit être positif")
         self._solde = self._solde + montant
         if self._solde < 0:
             self.appliquer_agios()
 
     @property
-    def numero_compte(self):
-        """getter numero_compte"""
-        return self._numero_compte
+    def autorisation_decouvert(self):
+        """getter autorisation_decouvert"""
+        return self._autorisation_decouvert
+
+
+    @autorisation_decouvert.setter
+    def autorisation_decouvert(self, value):
+        """setter autorisation_decouvert"""
+        if value < 0:
+            raise ValueError("autorisation de découvert doit être positif")
+        self._autorisation_decouvert = value
 
     @property
-    def nom_proprietaire(self):
-        """getter nom_proprietaire"""
-        return self._nom_proprietaire
+    def pourcentage_agios(self):
+        """getter pourcentage_agios"""
+        return self._pourcentage_agios
+
 
 
 class CompteEpargne(Compte):
@@ -115,7 +147,7 @@ class CompteEpargne(Compte):
     Le compte épargne génère des intérêts appliqués à chaque opération sur le compte épargne.
     """
 
-    def __init__(self, nom_proprietaire, solde=0, pourcentage_interets=3.5):
+    def __init__(self, nom_proprietaire, solde=0, pourcentage_interets=0):
         """
         Constructeur de la class CompteEpargne
         attributs : numero_compte, nom_proprietaire, solde, pourcentage_interets
@@ -162,12 +194,4 @@ class CompteEpargne(Compte):
         self._solde = self._solde + montant
         self.appliquer_interets()
 
-    @property
-    def numero_compte(self):
-        """getter numero_compte"""
-        return self._numero_compte
 
-    @property
-    def nom_proprietaire(self):
-        """getter nom_proprietaire"""
-        return self._nom_proprietaire
