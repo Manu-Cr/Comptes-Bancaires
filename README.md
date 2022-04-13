@@ -1,4 +1,12 @@
 # Exercice sur les Comptes bancaires
+
+-Compte.py contient la classe abstraite CompteCourant ainsi que ses classes filles CompteCourant et CompteEpargne,
+ leurs attributs et leurs methods
+
+-main.py contient l'interface console avec la demande du compte sur lequel faire une opération, et le montant de la transaction.
+
+-test_unitaire est un jeu de test pour Compte.py
+
 ## Sujet
 
 Ecrire un programme qui implémente en POO un fonctionnement bancaire basique :  
