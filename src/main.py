@@ -3,11 +3,11 @@ from Compte import Compte, CompteCourant, CompteEpargne
 if __name__ == '__main__':
     print("Let's start coding our bank application !")
 
-# Création de 2 comptes pour le test
-compte_courant = CompteCourant("Jean", solde=1200, autorisation_decouvert=500, pourcentage_agios=2.5)
-compte_epargne = CompteEpargne("Jean", solde=1200, pourcentage_interets=3.5)
+""" Création de 2 comptes pour le test"""
+compte_courant = CompteCourant("Jean", solde=-200, autorisation_decouvert=500, pourcentage_agios=2.5)
+compte_epargne = CompteEpargne("Jean", solde=2500, pourcentage_interets=3.5)
 
-# Interface Console
+"""Interface Console vu par un utilisateur qui à acces que à ces deux compte."""
 sortie = False
 while not sortie:
     print("----------------------------------------------------------------\n")
@@ -34,9 +34,9 @@ while not sortie:
                 compte_courant.versement(montant)
                 print("{} à été versé sur le compte courant n°{} de {}\n".format(montant, compte_courant.numero_compte,
                                                                                  compte_courant.nom_proprietaire))
-                print('*********************************************************************************')
-                print(compte_courant)
-                print('*********************************************************************************')
+            print('*********************************************************************************')
+            print(compte_courant)
+            print('*********************************************************************************')
         case 'epargne':
             print('*********************************************************************************')
             print(compte_epargne)
@@ -55,9 +55,9 @@ while not sortie:
                 print("{} à été versé sur le compte épargne n°{} de {}\n".format(abs(montant),
                                                                                  compte_epargne.numero_compte,
                                                                                  compte_epargne.nom_proprietaire))
-                print('*********************************************************************************')
-                print(compte_epargne)
-                print('*********************************************************************************')
+            print('*********************************************************************************')
+            print(compte_epargne)
+            print('*********************************************************************************')
 
         case _:
             print("ERREUR DE SAISIE\n")  # TODO raise Exception("ERREUR DE SAISIE\n")
